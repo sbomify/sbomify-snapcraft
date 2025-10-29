@@ -1,0 +1,17 @@
+[project]
+name = "sbomify-snapcraft"
+version = "0.1.0"
+description = "Convert Snapcraft YAML files to SBOM format"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "click>=8.3.0",
+    "cyclonedx-bom>=7.2.0",
+    "pyyaml>=6.0.3",
+]
+
+[project.scripts]
+sbomify-snapcraft = "sbomify_snapcraft.cli:main"
+
+[tool.sbomify]
+company = "sbomify, ltd"
