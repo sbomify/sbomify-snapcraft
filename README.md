@@ -32,6 +32,7 @@ uv run sbomify-snapcraft --help
 The tool generates CycloneDX 1.6 SBOM in JSON format. By default, output is sent to stdout, but can be written to a file using the `-o` option.
 
 Each component includes:
+
 - Package name (extracted from source URL)
 - Version (from git tags, branches, commits, or filenames)
 - External reference (VCS source URL)
@@ -53,6 +54,7 @@ uv run sbomify-snapcraft telegram.yaml -v
 ```
 
 **Example output (abbreviated):**
+
 ```
 Snap name: telegram-desktop
 
@@ -87,6 +89,7 @@ Part: qt
 ```
 
 **Generated SBOM includes:**
+
 - 12 source dependencies compiled from Git repositories
 - Package names extracted from repository URLs
 - Versions from git tags (`v3.2.4` → `3.2.4`), branches (`n6.1.1`), or commit hashes (`0b68b11`)
@@ -94,21 +97,23 @@ Part: qt
 - Metadata: tool information (sbomify-snapcraft), supplier, timestamp
 
 **Not included (by design):**
+
 - The `stage-packages` (gstreamer1.0-fdkaac, libgeoclue-2-0, etc.) - pre-built system packages whose versions depend on build environment
 - The `build-packages` (clang, libboost-regex-dev, etc.) - build-time only dependencies
-- The local `telegram` part with `source: .` - local source code being packaged
+- Local parts with `source: .` - local source code being packaged
 
 ## Development
 
 This project uses `uv` for dependency management.
 
 To add dependencies:
+
 ```bash
 uv add package-name
 ```
 
 To run the CLI during development:
+
 ```bash
 uv run sbomify-snapcraft
 ```
-
