@@ -11,3 +11,9 @@ wheels/
 
 # Temporary files
 tmp/
+
+# Test coverage
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/

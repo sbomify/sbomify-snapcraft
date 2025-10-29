@@ -48,10 +48,10 @@ def main(snapcraft_file, output, verbose):
         snap_name = parser.get_snap_name()
         if verbose and snap_name:
             click.echo(f"Snap name: {snap_name}", err=True)
-        
+
         # Get all parts with source, name, and version
         parts_with_source = parser.get_parts_with_name_and_version()
-        
+
         if verbose:
             click.echo(f"\nFound {len(parts_with_source)} parts with source:\n", err=True)
             for part in parts_with_source:
@@ -74,17 +74,17 @@ def main(snapcraft_file, output, verbose):
 
         # Create SBOM generator
         generator = SBOMGenerator(snap_name=snap_name)
-        
+
         # Add all components from parts
         generator.add_components_from_parts(parts_with_source)
-        
+
         if verbose:
             click.echo(f"Added {len(parts_with_source)} components to SBOM", err=True)
-        
+
         # Generate output
         output_path = str(output) if output else None
         generator.generate(output_file=output_path)
-        
+
         if verbose:
             click.echo("✓ SBOM generated successfully!", err=True)
 
