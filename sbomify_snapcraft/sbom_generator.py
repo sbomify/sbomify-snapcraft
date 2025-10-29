@@ -109,7 +109,7 @@ class SBOMGenerator:
                 - source_commit: Git commit hash
         """
         package_name = part_info.get('package_name')
-        version = part_info.get('version', 'unknown')
+        version = part_info.get('version') or 'unknown'
 
         if not package_name:
             return

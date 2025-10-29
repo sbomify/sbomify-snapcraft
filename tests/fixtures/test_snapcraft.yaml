@@ -1,0 +1,52 @@
+name: example-app
+base: core24
+grade: stable
+confinement: strict
+
+apps:
+  example-app:
+    command: usr/bin/example-app
+    plugs:
+      - network
+
+parts:
+  # Local source - should be skipped
+  local-part:
+    plugin: nil
+    source: .
+    source-type: git
+
+  # Git source with tag
+  lib-alpha:
+    plugin: cmake
+    source: https://github.com/example/lib-alpha.git
+    source-depth: 1
+    source-tag: v2.4.8
+
+  # Git source with branch
+  lib-beta:
+    plugin: autotools
+    source: https://github.com/example/lib-beta.git
+    source-branch: n7.2.3
+
+  # Git source with commit
+  lib-gamma:
+    plugin: cmake
+    source: https://github.com/example/lib-gamma.git
+    source-commit: abc1234567890def1234567890abcdef12345678
+
+  # Tarball with version in filename
+  lib-delta:
+    plugin: cmake
+    source: https://example.com/downloads/lib-delta-3.1.4.tar.xz
+
+  # Tarball with -src suffix
+  lib-epsilon:
+    plugin: meson
+    source: https://example.com/archive/lib-epsilon-src-5.6.7.tar.gz
+
+  # Binary with platform identifiers
+  tool-zeta:
+    plugin: nil
+    source: https://example.com/releases/tool-zeta-v1.9.2-x86_64-unknown-linux-musl.tar.gz
+
